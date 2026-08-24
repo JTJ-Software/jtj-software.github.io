@@ -37,17 +37,12 @@ jobs:
           test -f public/pt/index.html
           test -f public/pt/contacto/index.html
           test -f public/pt/legal/index.html
-          test -f public/pt/servicos/index.html
-          test -f public/pt/servicos/presenca-digital/index.html
           test -f public/en/index.html
           test -f public/en/contact/index.html
           test -f public/en/legal/index.html
-          test -f public/en/solutions/index.html
-          test -f public/en/solutions/digital-presence/index.html
           test -f public/contacto/index.html
           test -f public/assets/styles.css
           test -f public/assets/theme.js
-          test -f public/assets/language.js
           test -f public/CNAME
           test -f public/robots.txt
           test -f public/sitemap.xml

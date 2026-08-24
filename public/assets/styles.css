@@ -1560,9 +1560,11 @@ html[data-theme="dark"] .theme-icon-sun {
   }
 
   .contact::before {
-    top: 6.5rem;
-    right: 1rem;
-    height: 4rem;
+    top: 2.25rem;
+    right: 0;
+    width: 0.65rem;
+    height: 2.75rem;
+    border-radius: 0 0 0.65rem 0.65rem;
   }
 
   .capability-note,

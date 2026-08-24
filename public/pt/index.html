@@ -23,12 +23,13 @@
     <title>JTJ Software — O complexo, simplificado.</title>
     <link rel="canonical" href="https://jtjsoftware.com/pt/">
     <link rel="alternate" hreflang="pt-PT" href="https://jtjsoftware.com/pt/">
-    <link rel="alternate" hreflang="en" href="https://jtjsoftware.com/">
+    <link rel="alternate" hreflang="en" href="https://jtjsoftware.com/en/">
     <link rel="alternate" hreflang="x-default" href="https://jtjsoftware.com/">
     <link rel="icon" href="../assets/jtj-logo-dark-bg.png" type="image/png">
     <link rel="apple-touch-icon" href="../assets/jtj-logo-dark-bg.png">
     <link rel="preload" href="../assets/jtj-logo-dark-bg.png" as="image" fetchpriority="high">
     <script src="../assets/theme.js"></script>
+    <script src="../assets/language.js" defer></script>
     <link rel="stylesheet" href="../assets/styles.css">
   </head>
   <body>
@@ -43,7 +44,7 @@
         </a>
 
         <nav class="desktop-nav" aria-label="Navegação principal">
-          <a href="#servicos">Serviços</a>
+          <a href="./servicos/">Soluções</a>
           <a href="#experiencia">Experiência</a>
           <a href="#metodo">Método</a>
           <a href="./contacto/">Contacto</a>
@@ -51,9 +52,9 @@
 
         <div class="header-controls">
           <nav class="language-switch" aria-label="Idioma">
-            <a href="./" lang="pt-PT" aria-current="page">PT</a>
+            <a href="./" lang="pt-PT" aria-current="page" data-language="pt">PT</a>
             <span aria-hidden="true">/</span>
-            <a href="../" lang="en" hreflang="en">EN</a>
+            <a href="../en/" lang="en" hreflang="en" data-language="en">EN</a>
           </nav>
 
           <button
@@ -166,6 +167,41 @@
             <h3>Engenharia aplicada</h3>
             <p>Prototipagem e investigação para criar soluções técnicas com rigor e pragmatismo.</p>
           </article>
+        </div>
+      </section>
+
+      <section class="solutions-preview section" aria-labelledby="solutions-preview-title">
+        <div class="shell">
+          <div class="solutions-preview-heading">
+            <p class="section-kicker">Soluções</p>
+            <div>
+              <h2 id="solutions-preview-title">Formas claras de começar.</h2>
+              <p>Ofertas focadas para necessidades concretas, com o mesmo cuidado aplicado à engenharia à medida.</p>
+            </div>
+          </div>
+
+          <div class="solution-card-grid">
+            <a class="solution-card" href="./servicos/presenca-digital/">
+              <span class="solution-card-meta">01 · Pacote</span>
+              <h3>Presença Digital</h3>
+              <p>Um site rápido e credível, pensado para o seu negócio e preparado para ser encontrado.</p>
+              <span class="solution-card-link">Explorar a solução <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="solution-card" href="./servicos/#integracoes">
+              <span class="solution-card-meta">02 · À medida</span>
+              <h3>Integrações &amp; Automação</h3>
+              <p>Ligar sistemas, simplificar processos e eliminar trabalho manual repetitivo.</p>
+              <span class="solution-card-link">Ver como funciona <span aria-hidden="true">↗</span></span>
+            </a>
+            <a class="solution-card" href="./servicos/#evolucao">
+              <span class="solution-card-meta">03 · Contínuo</span>
+              <h3>Evolução de Produto</h3>
+              <p>Modernizar, ampliar e manter software sem perder o controlo operacional.</p>
+              <span class="solution-card-link">Ver como funciona <span aria-hidden="true">↗</span></span>
+            </a>
+          </div>
+
+          <a class="text-link solutions-preview-link" href="./servicos/">Explorar todas as soluções <span aria-hidden="true">→</span></a>
         </div>
       </section>
 
@@ -305,6 +341,7 @@
       <div class="footer-bottom shell">
         <div class="footer-meta">
           <span>© 2026 JTJ Software. Todos os direitos reservados.</span>
+          <a href="./servicos/">Soluções</a>
           <a href="./legal/">Privacidade &amp; cookies</a>
         </div>
         <a class="back-to-top" href="#top" data-back-to-top aria-label="Voltar ao topo" title="Voltar ao topo"><span aria-hidden="true">↑</span></a>

@@ -68,6 +68,55 @@
       });
     });
 
+    var mobileMenus = document.querySelectorAll(".mobile-nav");
+
+    mobileMenus.forEach(function (menu) {
+      menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          menu.removeAttribute("open");
+        });
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      mobileMenus.forEach(function (menu) {
+        if (menu.hasAttribute("open") && !menu.contains(event.target)) {
+          menu.removeAttribute("open");
+        }
+      });
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+
+      mobileMenus.forEach(function (menu) {
+        if (menu.hasAttribute("open")) {
+          menu.removeAttribute("open");
+          menu.querySelector("summary").focus();
+        }
+      });
+    });
+
+    var emailChannel = document.querySelector('.channel-card[href^="mailto:"]');
+    var pageQuery = new URLSearchParams(window.location.search);
+    var selectedService = pageQuery.get("service") || pageQuery.get("servico");
+
+    if (emailChannel && selectedService) {
+      var isPortuguese = document.documentElement.lang.toLowerCase().indexOf("pt") === 0;
+      var subjects = {
+        "custom-software": isPortuguese ? "Projeto de software à medida" : "Custom software project",
+        "software-a-medida": "Projeto de software à medida",
+        "packages": isPortuguese ? "Pedido sobre pacotes" : "Packaged service enquiry",
+        "pacotes": "Pedido sobre pacotes",
+        "digital-presence": isPortuguese ? "Projeto de presença digital" : "Digital presence project",
+        "presenca-digital": "Projeto de presença digital"
+      };
+
+      if (subjects[selectedService]) {
+        emailChannel.href = "mailto:info@jtjsoftware.com?subject=" + encodeURIComponent(subjects[selectedService]);
+      }
+    }
+
     var backToTopLinks = document.querySelectorAll("[data-back-to-top]");
 
     if (backToTopLinks.length) {

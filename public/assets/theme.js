@@ -97,26 +97,6 @@
       });
     });
 
-    var emailChannel = document.querySelector('.channel-card[href^="mailto:"]');
-    var pageQuery = new URLSearchParams(window.location.search);
-    var selectedService = pageQuery.get("service") || pageQuery.get("servico");
-
-    if (emailChannel && selectedService) {
-      var isPortuguese = document.documentElement.lang.toLowerCase().indexOf("pt") === 0;
-      var subjects = {
-        "custom-software": isPortuguese ? "Projeto de software à medida" : "Custom software project",
-        "software-a-medida": "Projeto de software à medida",
-        "packages": isPortuguese ? "Pedido sobre pacotes" : "Packaged service enquiry",
-        "pacotes": "Pedido sobre pacotes",
-        "digital-presence": isPortuguese ? "Projeto de presença digital" : "Digital presence project",
-        "presenca-digital": "Projeto de presença digital"
-      };
-
-      if (subjects[selectedService]) {
-        emailChannel.href = "mailto:info@jtjsoftware.com?subject=" + encodeURIComponent(subjects[selectedService]);
-      }
-    }
-
     var backToTopLinks = document.querySelectorAll("[data-back-to-top]");
 
     if (backToTopLinks.length) {

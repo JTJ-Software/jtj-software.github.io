@@ -36,16 +36,16 @@ jobs:
           test -f public/legal/index.html
           test -f public/pt/index.html
           test -f public/pt/software-a-medida/index.html
-          test -f public/pt/pacotes/index.html
-          test -f public/pt/pacotes/presenca-digital/index.html
           test -f public/pt/experiencia/index.html
           test -f public/pt/contacto/index.html
           test -f public/pt/legal/index.html
           test -f public/en/index.html
           test -f public/en/custom-software/index.html
-          test -f public/en/packages/index.html
-          test -f public/en/packages/digital-presence/index.html
           test -f public/en/experience/index.html
+          test -f public/en/approach/index.html
+          test -f public/en/solutions/index.html
+          test -f public/pt/metodo/index.html
+          test -f public/pt/servicos/index.html
           test -f public/en/contact/index.html
           test -f public/en/legal/index.html
           test -f public/contacto/index.html

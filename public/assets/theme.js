@@ -35,6 +35,12 @@
     root.dataset.themePreference = preference;
     root.style.colorScheme = theme;
 
+    // Hidden variants stay lazy; fetch the visible logo immediately on a theme change.
+    var visibleLogoClass = theme === "dark" ? "panel-logo-light" : "panel-logo-dark";
+    document.querySelectorAll(".panel-logo").forEach(function (logo) {
+      logo.loading = logo.classList.contains(visibleLogoClass) ? "eager" : "lazy";
+    });
+
     var themeColor = document.querySelector('meta[name="theme-color"]');
     if (themeColor) {
       themeColor.setAttribute("content", theme === "dark" ? "#111417" : "#f2efe8");

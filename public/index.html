@@ -18,9 +18,25 @@
     <link rel="alternate" hreflang="en" href="https://jtjsoftware.com/en/">
     <link rel="alternate" hreflang="pt-PT" href="https://jtjsoftware.com/pt/">
     <link rel="alternate" hreflang="x-default" href="https://jtjsoftware.com/">
-    <link rel="icon" href="./assets/jtj-logo-dark-bg.png" type="image/png">
-    <link rel="apple-touch-icon" href="./assets/jtj-logo-dark-bg.png">
-    <script src="./assets/theme.js"></script>
+    <link rel="icon" href="./assets/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" sizes="180x180">
+    <!-- Apply the saved theme before first paint; interactions load with defer. -->
+    <script>
+      (function () {
+        var root = document.documentElement, preference = "auto";
+        try {
+          var saved = localStorage.getItem("jtj-theme");
+          if (saved === "light" || saved === "dark") preference = saved;
+        } catch (_) {}
+        var theme = preference === "auto" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : preference;
+        root.dataset.theme = theme;
+        root.dataset.themePreference = preference;
+        root.style.colorScheme = theme;
+        root.classList.replace("no-js", "js");
+        document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#111417" : "#f2efe8";
+      })();
+    </script>
+    <script src="./assets/theme.js" defer></script>
     <script src="./assets/language.js"></script>
     <link rel="stylesheet" href="./assets/styles.css">
     <script type="application/ld+json">
@@ -39,7 +55,7 @@
   <body class="language-gateway-page">
     <main class="language-gateway shell" id="content">
       <div class="language-gateway-brand" aria-hidden="true">
-        <img src="./assets/jtj-logo-light-bg.png" alt="" width="1080" height="1080">
+        <img src="./assets/jtj-logo-light-bg.webp" srcset="./assets/jtj-logo-light-bg-360.webp 360w, ./assets/jtj-logo-light-bg-480.webp 480w, ./assets/jtj-logo-light-bg.webp 715w" sizes="(max-width: 1160px) 360px, 460px" alt="" width="715" height="715">
       </div>
       <div class="language-gateway-copy">
         <p class="section-kicker">JTJ Software · Portugal</p>

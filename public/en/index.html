@@ -19,10 +19,38 @@
     <link rel="alternate" hreflang="pt-PT" href="https://jtjsoftware.com/pt/">
     <link rel="alternate" hreflang="en" href="https://jtjsoftware.com/en/">
     <link rel="alternate" hreflang="x-default" href="https://jtjsoftware.com/">
-    <link rel="icon" href="../assets/jtj-logo-dark-bg.png" type="image/png">
-    <link rel="apple-touch-icon" href="../assets/jtj-logo-dark-bg.png">
-    <link rel="preload" href="../assets/jtj-logo-dark-bg.png" as="image" fetchpriority="high">
-    <script src="../assets/theme.js"></script>
+    <link rel="icon" href="../assets/favicon-48.png" type="image/png" sizes="48x48">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" sizes="180x180">
+    <!-- Apply the saved theme before first paint; interactions load with defer. -->
+    <script>
+      (function () {
+        var root = document.documentElement, preference = "auto";
+        try {
+          var saved = localStorage.getItem("jtj-theme");
+          if (saved === "light" || saved === "dark") preference = saved;
+        } catch (_) {}
+        var theme = preference === "auto" ? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light") : preference;
+        root.dataset.theme = theme;
+        root.dataset.themePreference = preference;
+        root.style.colorScheme = theme;
+        root.classList.replace("no-js", "js");
+        document.querySelector('meta[name="theme-color"]').content = theme === "dark" ? "#111417" : "#f2efe8";
+      })();
+    </script>
+    <script>
+      (function () {
+        var base = "../assets/jtj-logo-" + (document.documentElement.dataset.theme === "dark" ? "light" : "dark") + "-bg";
+        var preload = document.createElement("link");
+        preload.rel = "preload";
+        preload.as = "image";
+        preload.fetchPriority = "high";
+        preload.imageSizes = "(max-width: 452px) calc(88vw - 29.92px), (max-width: 760px) 368px, (max-width: 899px) 386px, (max-width: 1160px) 342px, 360px";
+        preload.imageSrcset = base + "-360.webp 360w, " + base + "-480.webp 480w, " + base + ".webp 715w";
+        preload.href = base + ".webp";
+        document.head.appendChild(preload);
+      })();
+    </script>
+    <script src="../assets/theme.js" defer></script>
     <script src="../assets/language.js" defer></script>
     <link rel="stylesheet" href="../assets/styles.css">
   </head>
@@ -97,7 +125,10 @@
             <span class="panel-rail panel-rail-three" aria-hidden="true"></span>
             <img
               class="panel-logo panel-logo-dark"
-              src="../assets/jtj-logo-dark-bg.png"
+              src="../assets/jtj-logo-dark-bg.webp"
+              srcset="../assets/jtj-logo-dark-bg-360.webp 360w, ../assets/jtj-logo-dark-bg-480.webp 480w, ../assets/jtj-logo-dark-bg.webp 715w"
+              sizes="(max-width: 452px) calc(88vw - 29.92px), (max-width: 760px) 368px, (max-width: 899px) 386px, (max-width: 1160px) 342px, 360px"
+              loading="lazy"
               alt=""
               width="715"
               height="715"
@@ -105,11 +136,21 @@
             >
             <img
               class="panel-logo panel-logo-light"
-              src="../assets/jtj-logo-light-bg.png"
+              src="../assets/jtj-logo-light-bg.webp"
+              srcset="../assets/jtj-logo-light-bg-360.webp 360w, ../assets/jtj-logo-light-bg-480.webp 480w, ../assets/jtj-logo-light-bg.webp 715w"
+              sizes="(max-width: 452px) calc(88vw - 29.92px), (max-width: 760px) 368px, (max-width: 899px) 386px, (max-width: 1160px) 342px, 360px"
+              loading="lazy"
               alt=""
               width="715"
               height="715"
+              fetchpriority="high"
             >
+            <script>
+              // Only promote the visible variant; the hidden logo stays unfetched.
+              document.currentScript.parentElement.querySelector(
+                document.documentElement.dataset.theme === "dark" ? ".panel-logo-light" : ".panel-logo-dark"
+              ).loading = "eager";
+            </script>
           </div>
           <figcaption>
             <span>Clear software.</span>
@@ -276,7 +317,7 @@
     <footer class="site-footer">
       <div class="footer-main shell">
         <div class="footer-brand-block">
-          <a class="brand footer-brand" href="./" aria-label="JTJ Software — home"><span class="brand-window" aria-hidden="true"><img class="brand-logo footer-logo" src="../assets/jtj-logo-light.png" alt="" width="1080" height="1080" loading="lazy"></span></a>
+          <a class="brand footer-brand" href="./" aria-label="JTJ Software — home"><span class="brand-window" aria-hidden="true"><img class="brand-logo footer-logo" src="../assets/jtj-logo-light.webp" srcset="../assets/jtj-logo-light-340.webp 340w, ../assets/jtj-logo-light-510.webp 510w, ../assets/jtj-logo-light.webp 1080w" sizes="(max-width: 760px) 160px, 170px" alt="" width="1080" height="1080" loading="lazy"></span></a>
           <p><strong>Custom software.</strong><span>Clear solutions. Built to evolve.</span></p>
         </div>
         <address class="footer-contact-block">

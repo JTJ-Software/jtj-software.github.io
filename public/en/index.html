@@ -145,12 +145,6 @@
               height="715"
               fetchpriority="high"
             >
-            <script>
-              // Only promote the visible variant; the hidden logo stays unfetched.
-              document.currentScript.parentElement.querySelector(
-                document.documentElement.dataset.theme === "dark" ? ".panel-logo-light" : ".panel-logo-dark"
-              ).loading = "eager";
-            </script>
           </div>
           <figcaption>
             <span>Clear software.</span>

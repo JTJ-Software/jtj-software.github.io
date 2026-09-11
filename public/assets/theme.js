@@ -28,18 +28,21 @@
     });
   }
 
+  function updateLogoLoading(theme) {
+    // Hidden variants stay lazy; fetch the visible logo immediately on a theme change.
+    var visibleLogoClass = theme === "dark" ? "panel-logo-light" : "panel-logo-dark";
+    document.querySelectorAll(".panel-logo").forEach(function (logo) {
+      logo.loading = logo.classList.contains(visibleLogoClass) ? "eager" : "lazy";
+    });
+  }
+
   function applyPreference(preference, persist) {
     var theme = resolvedTheme(preference);
 
     root.dataset.theme = theme;
     root.dataset.themePreference = preference;
     root.style.colorScheme = theme;
-
-    // Hidden variants stay lazy; fetch the visible logo immediately on a theme change.
-    var visibleLogoClass = theme === "dark" ? "panel-logo-light" : "panel-logo-dark";
-    document.querySelectorAll(".panel-logo").forEach(function (logo) {
-      logo.loading = logo.classList.contains(visibleLogoClass) ? "eager" : "lazy";
-    });
+    updateLogoLoading(theme);
 
     var themeColor = document.querySelector('meta[name="theme-color"]');
     if (themeColor) {
@@ -63,7 +66,15 @@
 
   root.classList.remove("no-js");
   root.classList.add("js");
-  applyPreference(readPreference(), false);
+  // The inline bootstrap already applied this before paint. Avoid invalidating
+  // the completed page's styles again when this deferred script starts.
+  var initialPreference = readPreference();
+  if (root.dataset.theme !== resolvedTheme(initialPreference) ||
+      root.dataset.themePreference !== initialPreference) {
+    applyPreference(initialPreference, false);
+  }
+  // The head preload starts the request; promote it only after HTML parsing.
+  updateLogoLoading(root.dataset.theme);
 
   document.addEventListener("DOMContentLoaded", function () {
     updateControls(root.dataset.theme || resolvedTheme(root.dataset.themePreference || "auto"));
@@ -112,6 +123,12 @@
         var isVisible = window.scrollY > revealAt;
 
         backToTopLinks.forEach(function (link) {
+          // No footer measurement is needed while this control is hidden.
+          // In particular, do not force the first page layout during startup.
+          if (!isVisible) {
+            link.classList.remove("is-visible");
+            return;
+          }
           var footer = link.closest(".site-footer");
           var restingOffset = window.innerWidth <= 760 ? 16 : 32;
           var footerClearance = window.innerWidth <= 760 ? 16 : 24;
